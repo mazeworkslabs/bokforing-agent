@@ -1,0 +1,16 @@
+{
+  "env": {
+    "BOKFORING_API_KEY": "sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(curl:*)",
+      "Bash(python -m json.tool:*)",
+      "WebFetch(domain:skatteverket.se)",
+      "WebFetch(domain:www.skatteverket.se)",
+      "WebFetch(domain:www4.skatteverket.se)",
+      "WebFetch(domain:xmls.skatteverket.se)"
+    ]
+  }
+}
