@@ -2,12 +2,18 @@
 
 > Swedish double-entry bookkeeping. Digital shoebox + ledger. No business logic.
 
+## Setup
+1. Copy `.claude/settings.local.json.example` → `.claude/settings.local.json`
+2. Set `BOKFORING_API_KEY` to your instance's API key
+3. Replace the placeholder base URL `bokforing.example.com` with your instance's host
+   (in this file and the skill files under `.claude/skills/`)
+
 ## API
-Base URL: https://bokforing.example.com
+Base URL: https://bokforing.example.com   # replace with your instance
 Auth: X-API-Key header
 
 ```
-X-API-Key: ${BOKFORING_API_KEY}  # remember the
+X-API-Key: ${BOKFORING_API_KEY}
 ```
 ## Example first request
 curl -s -H "X-API-Key: ${BOKFORING_API_KEY}" "https://bokforing.example.com/users/me/companies"
@@ -57,7 +63,7 @@ POST /companies/1/vouchers
 ```
 
 ## Create Invoice
-You generates PDF → uploads → books with total_amount
+Agent generates PDF → uploads → books with total_amount
 ```json
 POST /companies/1/invoices
 {
@@ -93,7 +99,8 @@ POST /companies/1/invoices/1/payments
 Use `tmp/` for drafts, kladdar, generated PDFs, and other temporary files. The directory is gitignored.
 
 ## Python
-Use `python` (not `python3`) — points to conda at `/Users/frej/Installations/miniconda3/bin/python` with reportlab etc installed.
+PDF generation (`invoice_pdf.py`) needs `reportlab`: `pip install reportlab`.
+Use whichever interpreter has it installed — `python` or `python3` depending on your system.
 
 ## API Key Gotcha
 Use `--header "X-API-Key: $BOKFORING_API_KEY"` (not `-H "X-API-Key: ${BOKFORING_API_KEY}"`). Variable expansion is inconsistent with `${}`  syntax.
